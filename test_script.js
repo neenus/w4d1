@@ -1,7 +1,7 @@
 const pg = require('pg');
 const settings = require("./settings.json");
 let query = process.argv.slice(2)[0];
-// console.log(query);
+
 const client = new pg.Client ({
   user      : settings.user,
   password  : settings.password,
@@ -23,7 +23,6 @@ let getInfo = function (array) {
   }
 }; 
 
-
 function getPeople(query,callback){
 client.connect((err) => {
   if (err) {
@@ -36,6 +35,7 @@ client.connect((err) => {
     callback(result.rows);
     client.end();
   });
-});}
+});
+}
 
 getPeople(query,getInfo);
